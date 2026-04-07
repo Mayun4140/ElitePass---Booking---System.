@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElitePass | Premium Booking</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="brand-logo">ElitePass</div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#events">Live Events</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero-banner">
+        <div class="hero-content">
+            <h1>Welcome to Elite Events</h1>
+            <p>Your premium gateway for Movies, Sports, and Grand Concerts.</p>
+            <a href="#events" class="cta-btn">Book Tickets Now</a>
+        </div>
+    </section>
+
+    <section id="events" class="event-section">
+        <h2 class="section-title">Upcoming Shows</h2>
+        <div class="event-grid">
+            <div class="custom-card reveal">
+                <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=600&q=80">
+                <div class="card-info">
+                    <h3>Musical Night 2026</h3>
+                    <p>📅 April 20, 2026 | 📍 Salt Lake Stadium</p>
+                    <button class="action-btn" onclick="toggleDetails('det1')">View Price & Time Details</button>
+                    <div id="det1" class="hidden-info">Timing: 6:30 PM - 10:30 PM<br>VIP Row: ₹1199 | Economy: ₹999</div>
+                    <button class="book-now" onclick="openModal('Musical Night 2026', 999)">Select Seats</button>
+                </div>
+            </div>
+            <div class="custom-card reveal">
+                <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=600&q=80">
+                <div class="card-info">
+                    <h3>Blockbuster Movie</h3>
+                    <p>📅 April 25, 2026 | 📍 Inox, Kolkata</p>
+                    <button class="action-btn" onclick="toggleDetails('det2')">View Price & Time Details</button>
+                    <div id="det2" class="hidden-info">Timing: 3:00 PM & 7:00 PM<br>Executive: ₹450 | Classic: ₹250</div>
+                    <button class="book-now" onclick="openModal('Blockbuster Movie', 250)">Select Seats</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="bookingModal" class="modal">
+        <div class="modal-content large-modal">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div id="booking-step">
+                <h2 class="modal-title" id="eventTitle">Select Your Seats</h2>
+                <div class="screen-box">STAGE / SCREEN</div>
+                <div id="seatGrid" class="seat-grid-large"></div>
+                <form id="reservation-form" onsubmit="goToPayment(event)">
+                    <div class="input-row">
+                        <input type="text" id="userName" placeholder="Enter Full Name" required>
+                        <input type="email" id="userEmail" placeholder="Enter Email Address" required>
+                    </div>
+                    <div class="total-bar">Total Amount Payable: <span id="displayTotal">₹0</span></div>
+                    <button type="submit" class="submit-btn neon-glow">Proceed to Secure Payment ➜</button>
+                </form>
+            </div>
+            <div id="payment-step" style="display:none;">
+                <h3 style="color:#10b981;">Scan & Pay</h3>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=ElitePass-Payment" class="qr-code-large">
+                <p style="color:#94a3b8; font-size:0.8rem; margin-bottom:15px;">Accepting all UPI Apps</p>
+                <button onclick="confirmBooking()" class="confirm-btn">I Have Paid - Confirm Now</button>
+            </div>
+            <div id="success-step" style="display:none;">
+                <div class="success-icon">✅</div>
+                <h3>Booking Successful! 🥳</h3>
+                <p id="thankYouMsg" style="font-size:0.9rem; color:#cbd5e1;"></p>
+                <button onclick="closeModal()" class="cta-btn" style="margin-top:20px; width:100%;">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <section id="contact" class="contact-section">
+        <div class="contact-container">
+            <h2>Contact Us</h2>
+            <div class="contact-card-dark">
+                <p>📍 Sysslan IT Solutions, Salt Lake, Kolkata</p>
+                <p>📞 +91 8389823061</p>
+                <p>✉️ mayungiri2002@gmail.com</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <p>© 2026 Sysslan IT Solutions Internship Project | Crafted by Mayun Giri</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
